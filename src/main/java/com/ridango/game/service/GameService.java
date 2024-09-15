@@ -90,12 +90,7 @@ public class GameService {
 
     private void revealLetters() {
         int nameLength = currentCocktail.getName().replaceAll(" ", "").length();
-        int lettersToReveal = 1;
-
-        if (nameLength > 3) {
-            lettersToReveal = Math.min(1 + (game.getAttemptsLeft() / 2), nameLength - countRevealedLetters() - 1);
-        }
-
+        int lettersToReveal = Math.max(nameLength / 4, 1);
         Random random = new Random();
         List<Integer> unrevealedIndices = new ArrayList<>();
         for (int i = 0; i < revealedName.length; i++) {
@@ -104,20 +99,16 @@ public class GameService {
             }
         }
 
+        if (unrevealedIndices.size() <= 1) {
+            return;
+        }
+
+        lettersToReveal = Math.min(lettersToReveal, unrevealedIndices.size() - 1);
+
         for (int i = 0; i < lettersToReveal && !unrevealedIndices.isEmpty(); i++) {
             int index = unrevealedIndices.remove(random.nextInt(unrevealedIndices.size()));
             revealedName[index] = currentCocktail.getName().charAt(index);
         }
-    }
-
-    private int countRevealedLetters() {
-        int count = 0;
-        for (char c : revealedName) {
-            if (c != '_' && c != ' ') {
-                count++;
-            }
-        }
-        return count;
     }
 
     private void revealAdditionalInfo() {

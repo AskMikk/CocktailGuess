@@ -27,8 +27,6 @@ public class HighScoreService {
             } catch (NumberFormatException e) {
                 logger.error("Invalid high score format in file", e);
             }
-        } else {
-            logger.info("High score file does not exist. Starting with high score of 0.");
         }
         return highScore;
     }
