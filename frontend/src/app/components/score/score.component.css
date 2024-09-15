@@ -1,0 +1,17 @@
+.score-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.score-card {
+  background-color: rgb(70, 70, 180);
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.score-card p {
+  font-size: 18px;
+  margin: 5px 0;
+}

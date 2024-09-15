@@ -1,0 +1,7 @@
+<mat-card class="additional-info-card">
+  <div class="image-container" *ngIf="imageUrl">
+    <img [src]="imageUrl" alt="Cocktail Image" />
+  </div>
+  <h3>Additional Information:</h3>
+  <p *ngFor="let info of additionalInfo">{{ info }}</p>
+</mat-card>

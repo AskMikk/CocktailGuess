@@ -1,0 +1,30 @@
+
+.custom-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-dialog-actions button {
+  min-width: 100px;
+}
+
+.mat-dialog-container {
+  padding: 20px;
+}
+
+.mat-dialog-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.mat-dialog-content {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,47 @@
+<div *ngIf="gameState && gameState.revealedName" class="game-container">
+  <app-score [score]="gameState.score" [highScore]="gameState.highScore"></app-score>
+  <mat-card class="cocktail-card">
+    <div class="cocktail-name">
+      <ng-container *ngFor="let word of getWords(gameState.revealedName)">
+        <div class="word">
+          <ng-container *ngFor="let letter of word">
+            <div *ngIf="letter; else spaceBox" class="letter-box">{{ letter }}</div>
+            <ng-template #spaceBox>
+              <div class="space-box"></div>
+            </ng-template>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="recipe">
+      <h3>Instructions:</h3>
+      <p>{{ gameState.instructions }}</p>
+    </div>
+    <p class="attempts-left"><strong>Attempts Left:</strong> {{ gameState.attemptsLeft }}</p>
+
+    <div *ngIf="gameState.additionalInfo.length > 0">
+      <app-cocktail-detail
+        [additionalInfo]="gameState.additionalInfo"
+        [imageUrl]="gameState.imageUrl"
+      ></app-cocktail-detail>
+    </div>
+
+    <mat-form-field appearance="fill" class="guess-input">
+      <mat-label>Your Guess</mat-label>
+      <input matInput [(ngModel)]="guess" />
+    </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="makeGuess()"
+        [disabled]="gameState.gameOver || !guess.trim()"
+      >
+        Submit
+      </button>
+  </mat-card>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</div>
