@@ -15,12 +15,11 @@ export class GameService {
   makeGuess(guess: string): Observable<GameState> {
     return this.http.post<GameState>(
       `${this.apiUrl}/guess`,
-      { guess },
-      { withCredentials: true }
+      { guess }
     );
   }
 
   restartGame(): Observable<GameState> {
-    return this.http.get<GameState>(`${this.apiUrl}/restart`, { withCredentials: true });
+    return this.http.get<GameState>(`${this.apiUrl}/restart`);
   }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.context.annotation.SessionScope;
 import java.util.*;
 
 @Service
-@SessionScope
 @RequiredArgsConstructor
 public class GameService {
 

@@ -13,17 +13,18 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 @Service
-@RequiredArgsConstructor
 public class CocktailService {
 
     @Value("${cocktail.api.url}")
     private String randomCocktailUrl;
 
+    @Value("${cocktail.max.retries:1000}")
+    private int maxRetries;
+
     private final RestTemplate restTemplate = new RestTemplate();
     private static final Logger logger = LoggerFactory.getLogger(CocktailService.class);
 
     public Cocktail getRandomCocktail(Set<String> usedCocktails) {
-        int maxRetries = 635;
         int retries = 0;
         while (retries < maxRetries) {
             String response = restTemplate.getForObject(randomCocktailUrl, String.class);
